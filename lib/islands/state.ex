@@ -9,12 +9,16 @@ defmodule Islands.State do
   @book_ref Application.get_env(@app, :book_ref)
 
   @moduledoc """
-  Defines a `state machine` for the _Game of Islands_.
+  Implements a `state machine` for the _Game of Islands_.
   \n##### #{@book_ref}
   """
 
   alias __MODULE__
   alias Islands.PlayerID
+
+  @player_ids [:player1, :player2]
+  @player_turns [:player1_turn, :player2_turn]
+  @position_actions [:position_island, :position_all_islands]
 
   @derive [Poison.Encoder]
   @derive Jason.Encoder
@@ -29,33 +33,27 @@ defmodule Islands.State do
           | :player2_turn
           | :game_over
   @type player_state :: :islands_not_set | :islands_set
+  @type request ::
+          :add_player
+          | {:position_island, PlayerID.t()}
+          | {:position_all_islands, PlayerID.t()}
+          | {:set_islands, PlayerID.t()}
+          | {:guess_coord, PlayerID.t()}
+          | {:win_check, :no_win | :win}
+          | :stop
   @type t :: %State{
           game_state: game_state,
           player1_state: player_state,
           player2_state: player_state
         }
-
-  @typep request ::
-           :add_player
-           | {:position_island, PlayerID.t()}
-           | {:position_all_islands, PlayerID.t()}
-           | {:set_islands, PlayerID.t()}
-           | {:guess_coord, PlayerID.t()}
-           | {:win_check, :no_win | :win}
-           | :stop
-
-  @player_ids [:player1, :player2]
-  @player_turns [:player1_turn, :player2_turn]
-  @position_actions [:position_island, :position_all_islands]
-
   # Access behaviour
   defdelegate fetch(state, key), to: Map
   defdelegate get(state, key, default), to: Map
   defdelegate get_and_update(state, key, fun), to: Map
   defdelegate pop(state, key), to: Map
 
-  @spec new() :: t
-  def new(), do: %State{}
+  @spec new :: t
+  def new, do: %State{}
 
   @spec check(t, request) :: {:ok, t} | :error
   def check(%State{game_state: :initialized} = state, :add_player),

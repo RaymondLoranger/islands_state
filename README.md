@@ -1,6 +1,6 @@
 # Islands State
 
-Defines a `state machine` for the _Game of Islands_.
+Implements a `state machine` for the _Game of Islands_.
 
 ## Installation
 
