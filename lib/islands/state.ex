@@ -58,8 +58,9 @@ defmodule Islands.State do
   @spec check(t, request) :: {:ok, t} | :error
   def check(
         %State{game_state: :initialized} = state,
-        {:position_all_islands, :player1}
-      ),
+        {action, :player1}
+      )
+      when action in @position_actions,
       do: {:ok, state}
 
   def check(%State{game_state: :initialized} = state, :add_player),
