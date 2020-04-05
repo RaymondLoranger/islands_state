@@ -19,10 +19,10 @@ defmodule Islands.StateTest do
     }
 
     poison =
-      ~s<{\"player2_state\":\"islands_not_set\",\"player1_state\":\"islands_not_set\",\"game_state\":\"initialized\"}>
+      ~s<{"player2_state":"islands_not_set","player1_state":"islands_not_set","game_state":"initialized"}>
 
     jason =
-      ~s<{\"game_state\":\"initialized\",\"player1_state\":\"islands_not_set\",\"player2_state\":\"islands_not_set\"}>
+      ~s<{"game_state":"initialized","player1_state":"islands_not_set","player2_state":"islands_not_set"}>
 
     decoded = %{
       "game_state" => "initialized",
