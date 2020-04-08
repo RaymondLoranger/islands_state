@@ -10,12 +10,14 @@ defmodule Islands.StateTest do
     {:ok, players_set} = State.check(initialized, :add_player)
     {:ok, player1_set} = State.check(players_set, {:set_islands, :player1})
     {:ok, player1_turn} = State.check(player1_set, {:set_islands, :player2})
+    {:ok, player2_turn} = State.check(player1_turn, {:guess_coord, :player1})
 
     states = %{
       initialized: initialized,
       players_set: players_set,
       player1_set: player1_set,
-      player1_turn: player1_turn
+      player1_turn: player1_turn,
+      player2_turn: player2_turn
     }
 
     poison =
@@ -117,7 +119,13 @@ defmodule Islands.StateTest do
 
     test "reacts to stop", %{states: states} do
       state = states.player1_turn
-      {:ok, state} = State.check(state, :stop)
+      :error = State.check(state, {:stop, :player2})
+      {:ok, state} = State.check(state, {:stop, :player1})
+      assert state.game_state == :game_over
+
+      state = states.player2_turn
+      :error = State.check(state, {:stop, :player1})
+      {:ok, state} = State.check(state, {:stop, :player2})
       assert state.game_state == :game_over
     end
   end

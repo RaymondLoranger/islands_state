@@ -39,8 +39,8 @@ defmodule Islands.State do
           | {:position_all_islands, PlayerID.t()}
           | {:set_islands, PlayerID.t()}
           | {:guess_coord, PlayerID.t()}
+          | {:stop, PlayerID.t()}
           | {:win_check, :no_win | :win}
-          | :stop
   @type t :: %State{
           game_state: game_state,
           player1_state: player_state,
@@ -88,15 +88,17 @@ defmodule Islands.State do
       ),
       do: {:ok, put_in(state.game_state, :player1_turn)}
 
+  def check(%State{game_state: :player1_turn} = state, {:stop, :player1}),
+    do: {:ok, put_in(state.game_state, :game_over)}
+
+  def check(%State{game_state: :player2_turn} = state, {:stop, :player2}),
+    do: {:ok, put_in(state.game_state, :game_over)}
+
   def check(%State{game_state: player_turn} = state, {:win_check, :no_win})
       when player_turn in @player_turns,
       do: {:ok, state}
 
   def check(%State{game_state: player_turn} = state, {:win_check, :win})
-      when player_turn in @player_turns,
-      do: {:ok, put_in(state.game_state, :game_over)}
-
-  def check(%State{game_state: player_turn} = state, :stop)
       when player_turn in @player_turns,
       do: {:ok, put_in(state.game_state, :game_over)}
 
