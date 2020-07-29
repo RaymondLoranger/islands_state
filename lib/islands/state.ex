@@ -2,16 +2,12 @@
 # │ Inspired by the book "Functional Web Development" by Lance Halvorsen. │
 # └───────────────────────────────────────────────────────────────────────┘
 defmodule Islands.State do
-  @behaviour Access
-
-  use PersistConfig
-
-  @book_ref Application.get_env(@app, :book_ref)
-
   @moduledoc """
   Implements a `state machine` for the _Game of Islands_.
-  \n##### #{@book_ref}
+  \n##### #{Islands.Config.get(:book_ref)}
   """
+
+  @behaviour Access
 
   alias __MODULE__
   alias Islands.PlayerID
@@ -46,6 +42,7 @@ defmodule Islands.State do
           player1_state: player_state,
           player2_state: player_state
         }
+
   # Access behaviour
   defdelegate fetch(state, key), to: Map
   defdelegate get(state, key, default), to: Map

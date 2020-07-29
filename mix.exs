@@ -4,8 +4,8 @@ defmodule Islands.State.MixProject do
   def project do
     [
       app: :islands_state,
-      version: "0.1.7",
-      elixir: "~> 1.7",
+      version: "0.1.8",
+      elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
       name: "Islands State",
       source_url: source_url(),
@@ -27,7 +27,7 @@ defmodule Islands.State.MixProject do
 
   defp package do
     [
-      files: ["lib", "mix.exs", "README*", "config/persist*.exs"],
+      files: ["lib", "mix.exs", "README*"],
       maintainers: ["Raymond Loranger"],
       licenses: ["MIT"],
       links: %{"GitHub" => source_url()}
@@ -46,13 +46,12 @@ defmodule Islands.State.MixProject do
     [
       {:mix_tasks,
        github: "RaymondLoranger/mix_tasks", only: :dev, runtime: false},
-      {:poison, "~> 3.0"},
-      {:jason, "~> 1.0"},
-      {:persist_config, "~> 0.2", runtime: false},
+      {:ex_doc, "~> 0.22", only: :dev, runtime: false},
+      {:dialyxir, "~> 1.0", only: :dev, runtime: false},
+      {:islands_config, "~> 0.1", runtime: false},
       {:islands_player_id, "~> 0.1"},
-      {:earmark, "~> 1.0", only: :dev},
-      {:ex_doc, "~> 0.14", only: :dev, runtime: false},
-      {:dialyxir, "~> 0.5", only: :dev, runtime: false}
+      {:poison, "~> 3.1"},
+      {:jason, "~> 1.0"}
     ]
   end
 end
