@@ -58,7 +58,7 @@ defmodule Islands.State do
 
   def check(%State{game_state: :players_set} = state, {action, player_id})
       when action in @position_actions and player_id in @player_ids do
-    case state[state_key(player_id)] do
+    case state[player_state_key(player_id)] do
       :islands_not_set -> {:ok, state}
       :islands_set -> :error
     end
@@ -66,7 +66,7 @@ defmodule Islands.State do
 
   def check(%State{game_state: :players_set} = state, {:set_islands, player_id})
       when player_id in @player_ids do
-    state = put_in(state[state_key(player_id)], :islands_set)
+    state = put_in(state[player_state_key(player_id)], :islands_set)
 
     if both_players_islands_set?(state),
       do: {:ok, put_in(state.game_state, :player1_turn)},
@@ -108,6 +108,6 @@ defmodule Islands.State do
     state.player1_state == :islands_set and state.player2_state == :islands_set
   end
 
-  @spec state_key(PlayerID.t()) :: atom
-  defp state_key(player_id), do: :"#{player_id}_state"
+  @spec player_state_key(PlayerID.t()) :: atom
+  defp player_state_key(player_id), do: :"#{player_id}_state"
 end

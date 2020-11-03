@@ -32,8 +32,7 @@ defmodule Islands.StateTest do
       "player2_state" => "islands_not_set"
     }
 
-    {:ok,
-     json: %{poison: poison, jason: jason, decoded: decoded}, states: states}
+    %{json: %{poison: poison, jason: jason, decoded: decoded}, states: states}
   end
 
   describe "A state struct" do
