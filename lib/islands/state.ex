@@ -1,6 +1,6 @@
-# ┌───────────────────────────────────────────────────────────────────────┐
-# │ Inspired by the book "Functional Web Development" by Lance Halvorsen. │
-# └───────────────────────────────────────────────────────────────────────┘
+# ┌────────────────────────────────────────────────────────────────────┐
+# │ Based on the book "Functional Web Development" by Lance Halvorsen. │
+# └────────────────────────────────────────────────────────────────────┘
 defmodule Islands.State do
   @moduledoc """
   Implements a `state machine` for the _Game of Islands_.
