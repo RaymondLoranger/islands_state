@@ -4,7 +4,8 @@
 defmodule Islands.State do
   @moduledoc """
   Implements a `state machine` for the _Game of Islands_.
-  \n##### #{Islands.Config.get(:book_ref)}
+
+  ##### Based on the book [Functional Web Development](https://pragprog.com/book/lhelph/functional-web-development-with-elixir-otp-and-phoenix) by Lance Halvorsen.
   """
 
   @behaviour Access
