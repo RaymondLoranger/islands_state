@@ -46,7 +46,6 @@ defmodule Islands.State do
 
   # Access behaviour
   defdelegate fetch(state, key), to: Map
-  defdelegate get(state, key, default), to: Map
   defdelegate get_and_update(state, key, fun), to: Map
   defdelegate pop(state, key), to: Map
 

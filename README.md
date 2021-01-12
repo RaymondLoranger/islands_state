@@ -2,6 +2,8 @@
 
 Implements a `state machine` for the _Game of Islands_.
 
+##### Based on the book [Functional Web Development](https://pragprog.com/book/lhelph/functional-web-development-with-elixir-otp-and-phoenix) by Lance Halvorsen.
+
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
