@@ -4,7 +4,7 @@ defmodule Islands.State.MixProject do
   def project do
     [
       app: :islands_state,
-      version: "0.1.13",
+      version: "0.1.14",
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       name: "Islands State",
@@ -48,8 +48,6 @@ defmodule Islands.State.MixProject do
       {:ex_doc, "~> 0.22", only: :dev, runtime: false},
       {:islands_player_id, "~> 0.1"},
       {:jason, "~> 1.0"},
-      {:mix_tasks,
-       github: "RaymondLoranger/mix_tasks", only: :dev, runtime: false},
       {:poison, "~> 4.0"}
     ]
   end
