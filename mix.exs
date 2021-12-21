@@ -4,7 +4,7 @@ defmodule Islands.State.MixProject do
   def project do
     [
       app: :islands_state,
-      version: "0.1.15",
+      version: "0.1.16",
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       name: "Islands State",
@@ -21,7 +21,8 @@ defmodule Islands.State.MixProject do
 
   defp description do
     """
-    Implements a state machine for the Game of Islands.
+    A `state` struct and functions implementing a state machine
+    for the Game of Islands.
     """
   end
 
@@ -48,7 +49,7 @@ defmodule Islands.State.MixProject do
       {:ex_doc, "~> 0.22", only: :dev, runtime: false},
       {:islands_player_id, "~> 0.1"},
       {:jason, "~> 1.0"},
-      {:poison, "~> 4.0"}
+      {:poison, "~> 5.0"}
     ]
   end
 end

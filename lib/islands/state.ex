@@ -3,7 +3,8 @@
 # └────────────────────────────────────────────────────────────────────┘
 defmodule Islands.State do
   @moduledoc """
-  Implements a `state machine` for the _Game of Islands_.
+  A `state` struct and functions implementing a **state machine**
+  for the _Game of Islands_.
 
   ##### Based on the book [Functional Web Development](https://pragprog.com/book/lhelph/functional-web-development-with-elixir-otp-and-phoenix) by Lance Halvorsen.
   """
@@ -49,10 +50,30 @@ defmodule Islands.State do
   defdelegate get_and_update(state, key, fun), to: Map
   defdelegate pop(state, key), to: Map
 
+  @doc """
+  Creates a new `state` struct.
+
+  ## Examples
+
+      iex> Islands.State.new()
+      %Islands.State{
+        game_state: :initialized,
+        player1_state: :islands_not_set,
+        player2_state: :islands_not_set
+      }
+  """
   @spec new :: t
   def new, do: %State{}
 
+  @doc """
+  Decides whether to permit the `state`/`request` combination.
+  Also decides whether to transition to a new state.
+  Returns `{:ok, new_state}` if the combination is permissible.
+  Returns `:error` if it is not.
+  """
   @spec check(t, request) :: {:ok, t} | :error
+  def check(state, request)
+
   def check(%State{game_state: :initialized} = state, :add_player),
     do: {:ok, put_in(state.game_state, :players_set)}
 
@@ -99,6 +120,7 @@ defmodule Islands.State do
       when player_turn in @player_turns,
       do: {:ok, put_in(state.game_state, :game_over)}
 
+  # Catchall clause
   def check(_state, _request), do: :error
 
   ## Private functions
@@ -109,5 +131,6 @@ defmodule Islands.State do
   end
 
   @spec player_state_key(PlayerID.t()) :: atom
-  defp player_state_key(player_id), do: :"#{player_id}_state"
+  defp player_state_key(:player1), do: :player1_state
+  defp player_state_key(:player2), do: :player2_state
 end

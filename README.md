@@ -1,6 +1,7 @@
 # Islands State
 
-Implements a `state machine` for the _Game of Islands_.
+A `state` struct and functions implementing a **state machine**
+for the _Game of Islands_.
 
 ##### Based on the book [Functional Web Development](https://pragprog.com/book/lhelph/functional-web-development-with-elixir-otp-and-phoenix) by Lance Halvorsen.
 

@@ -70,7 +70,7 @@ defmodule Islands.StateTest do
 
     test "reacts to position island", %{states: states} do
       state = states.players_set
-      {:ok, state} = State.check(state, {:position_island, :player1})
+      {:ok, ^state} = State.check(state, {:position_island, :player1})
       {:ok, ^state} = State.check(state, {:position_island, :player1})
       {:ok, ^state} = State.check(state, {:position_island, :player2})
       {:ok, ^state} = State.check(state, {:position_island, :player2})
