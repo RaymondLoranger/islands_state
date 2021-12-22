@@ -64,8 +64,8 @@ defmodule Islands.StateTest do
       assert state.game_state == :players_set
     end
 
-    test "reacts to bad request", %{states: states} do
-      assert State.check(states.initialized, :bad_request) == :error
+    test "reacts to bad event", %{states: states} do
+      assert State.check(states.initialized, :bad_event) == :error
     end
 
     test "reacts to position island", %{states: states} do

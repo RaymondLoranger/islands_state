@@ -2,9 +2,13 @@
 # │ Based on the book "Functional Web Development" by Lance Halvorsen. │
 # └────────────────────────────────────────────────────────────────────┘
 defmodule Islands.State do
+  @state "[`state`](`t:Islands.State.t/0`)"
+  @state_machine "https://en.wikipedia.org/wiki/Finite-state_machine"
+  @readme "https://github.com/RaymondLoranger/islands_vue_client#readme"
+
   @moduledoc """
-  A `state` struct and functions implementing a **state machine**
-  for the _Game of Islands_.
+  A #{@state} struct and functions implementing a
+  [state machine](#{@state_machine}) for the [Game of Islands](#{@readme}).
 
   ##### Based on the book [Functional Web Development](https://pragprog.com/book/lhelph/functional-web-development-with-elixir-otp-and-phoenix) by Lance Halvorsen.
   """
@@ -24,14 +28,8 @@ defmodule Islands.State do
             player1_state: :islands_not_set,
             player2_state: :islands_not_set
 
-  @type game_state ::
-          :initialized
-          | :players_set
-          | :player1_turn
-          | :player2_turn
-          | :game_over
-  @type player_state :: :islands_not_set | :islands_set
-  @type request ::
+  @typedoc "Events"
+  @type event ::
           :add_player
           | {:position_island, PlayerID.t()}
           | {:position_all_islands, PlayerID.t()}
@@ -39,6 +37,16 @@ defmodule Islands.State do
           | {:guess_coord, PlayerID.t()}
           | {:stop, PlayerID.t()}
           | {:win_check, :no_win | :win}
+  @typedoc "Game states"
+  @type game_state ::
+          :initialized
+          | :players_set
+          | :player1_turn
+          | :player2_turn
+          | :game_over
+  @typedoc "Player states"
+  @type player_state :: :islands_not_set | :islands_set
+  @typedoc "A state struct for the Game of Islands"
   @type t :: %State{
           game_state: game_state,
           player1_state: player_state,
@@ -66,13 +74,12 @@ defmodule Islands.State do
   def new, do: %State{}
 
   @doc """
-  Decides whether to permit the `state`/`request` combination.
-  Also decides whether to transition to a new state.
-  Returns `{:ok, new_state}` if the combination is permissible.
-  Returns `:error` if it is not.
+  Decides whether to permit the `state`/`event` combination. Also decides
+  whether to transition to a new state. Returns `{:ok, new_state}` if the
+  combination is permissible. Returns `:error` if it is not.
   """
-  @spec check(t, request) :: {:ok, t} | :error
-  def check(state, request)
+  @spec check(t, event) :: {:ok, t} | :error
+  def check(state, event)
 
   def check(%State{game_state: :initialized} = state, :add_player),
     do: {:ok, put_in(state.game_state, :players_set)}
@@ -121,7 +128,7 @@ defmodule Islands.State do
       do: {:ok, put_in(state.game_state, :game_over)}
 
   # Catchall clause
-  def check(_state, _request), do: :error
+  def check(_state, _event), do: :error
 
   ## Private functions
 
