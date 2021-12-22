@@ -1,7 +1,7 @@
 # Islands State
 
-A [`state`][state] struct and functions implementing a
-[state machine][state machine] for the [Game of Islands][readme].
+A [`state`][state] struct and functions implementing a [state machine][fsm] for
+the [Game of Islands][readme].
 
 ##### Based on the book [Functional Web Development](https://pragprog.com/book/lhelph/functional-web-development-with-elixir-otp-and-phoenix) by Lance Halvorsen.
 
@@ -22,6 +22,6 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/islands_state](https://hexdocs.pm/islands_state).
 
+[fsm]: https://en.wikipedia.org/wiki/Finite-state_machine
 [readme]: https://github.com/RaymondLoranger/islands_vue_client#readme
 [state]: https://hexdocs.pm/islands_state/Islands.State.html#t:t/0
-[state machine]: https://en.wikipedia.org/wiki/Finite-state_machine
