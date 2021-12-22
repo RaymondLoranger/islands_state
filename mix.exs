@@ -21,8 +21,8 @@ defmodule Islands.State.MixProject do
 
   defp description do
     """
-    A `state` struct and functions implementing a state machine
-    for the Game of Islands.
+    A state struct and functions implementing a state machine for the Game of
+    Islands.
     """
   end
 

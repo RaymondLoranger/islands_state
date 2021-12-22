@@ -59,7 +59,7 @@ defmodule Islands.State do
   defdelegate pop(state, key), to: Map
 
   @doc """
-  Creates a new `state` struct.
+  Creates a new #{@state} struct.
 
   ## Examples
 
