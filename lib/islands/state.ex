@@ -2,13 +2,11 @@
 # │ Based on the book "Functional Web Development" by Lance Halvorsen. │
 # └────────────────────────────────────────────────────────────────────┘
 defmodule Islands.State do
-  @fsm "https://en.wikipedia.org/wiki/Finite-state_machine"
-  @state "[`state`](`t:Islands.State.t/0`)"
-  @readme "https://github.com/RaymondLoranger/islands_vue_client#readme"
-
   @moduledoc """
-  A #{@state} struct and functions implementing a [state machine](#{@fsm}) for
-  the [Game of Islands](#{@readme}).
+  A state struct and functions for the _Game of Islands_.
+
+  The state struct contains the fields `game_state`, `player1_state` and
+  `player2_state` for implementing a state machine in the _Game of Islands_.
 
   ##### Based on the book [Functional Web Development](https://pragprog.com/book/lhelph/functional-web-development-with-elixir-otp-and-phoenix) by Lance Halvorsen.
   """
@@ -28,7 +26,7 @@ defmodule Islands.State do
             player1_state: :islands_not_set,
             player2_state: :islands_not_set
 
-  @typedoc "Events"
+  @typedoc "State machine event"
   @type event ::
           :add_player
           | {:position_island, PlayerID.t()}
@@ -37,14 +35,14 @@ defmodule Islands.State do
           | {:guess_coord, PlayerID.t()}
           | {:stop, PlayerID.t()}
           | {:win_check, :no_win | :win}
-  @typedoc "Game states"
+  @typedoc "Game state"
   @type game_state ::
           :initialized
           | :players_set
           | :player1_turn
           | :player2_turn
           | :game_over
-  @typedoc "Player states"
+  @typedoc "Player state"
   @type player_state :: :islands_not_set | :islands_set
   @typedoc "A state struct for the Game of Islands"
   @type t :: %State{
@@ -59,7 +57,7 @@ defmodule Islands.State do
   defdelegate pop(state, key), to: Map
 
   @doc """
-  Creates a new #{@state} struct.
+  Creates a new state struct.
 
   ## Examples
 
