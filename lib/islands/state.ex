@@ -8,7 +8,7 @@ defmodule Islands.State do
   The state struct contains the fields `game_state`, `player1_state` and
   `player2_state` for implementing a state machine in the _Game of Islands_.
 
-  ##### Based on the book [Functional Web Development](https://pragprog.com/book/lhelph/functional-web-development-with-elixir-otp-and-phoenix) by Lance Halvorsen.
+  ##### Based on the book [Functional Web Development](https://pragprog.com/titles/lhelph/functional-web-development-with-elixir-otp-and-phoenix/) by Lance Halvorsen.
   """
 
   @behaviour Access
