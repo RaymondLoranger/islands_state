@@ -4,7 +4,7 @@ defmodule Islands.State.MixProject do
   def project do
     [
       app: :islands_state,
-      version: "0.1.20",
+      version: "0.1.21",
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       name: "Islands State",
