@@ -20,7 +20,7 @@ defmodule Islands.StateTest do
       player2_turn: player2_turn
     }
 
-    jason =
+    encoded =
       ~s<{"game_state":"initialized","player1_state":"islands_not_set","player2_state":"islands_not_set"}>
 
     decoded = %{
@@ -29,13 +29,13 @@ defmodule Islands.StateTest do
       "player2_state" => "islands_not_set"
     }
 
-    %{json: %{jason: jason, decoded: decoded}, states: states}
+    %{json: %{encoded: encoded, decoded: decoded}, states: states}
   end
 
   describe "A state struct" do
-    test "can be encoded by Jason", %{states: states, json: json} do
-      assert Jason.encode!(states.initialized) == json.jason
-      assert Jason.decode!(json.jason) == json.decoded
+    test "can be encoded by JSON", %{states: states, json: json} do
+      assert JSON.encode!(states.initialized) == json.encoded
+      assert JSON.decode!(json.encoded) == json.decoded
     end
   end
 

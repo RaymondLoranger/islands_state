@@ -20,7 +20,7 @@ defmodule Islands.State do
   @player_turns [:player1_turn, :player2_turn]
   @position_actions [:position_island, :position_all_islands]
 
-  @derive Jason.Encoder
+  @derive JSON.Encoder
   defstruct game_state: :initialized,
             player1_state: :islands_not_set,
             player2_state: :islands_not_set
