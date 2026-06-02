@@ -79,8 +79,10 @@ defmodule Islands.State do
 
   @doc """
   Decides whether to permit the `state`/`event` combination. Also decides
-  whether to transition to a new state. Returns `{:ok, new_state}` if the
-  combination is permissible. Returns `:error` if it is not.
+  whether to transition to a new state.
+
+  Returns `{:ok, new_state}` if the combination is permissible.
+  Returns `:error` if it is not.
   """
   @spec check(t, event) :: {:ok, t} | :error
   def check(state, event)
